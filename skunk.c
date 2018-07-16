@@ -31,7 +31,7 @@ int main(int argc, char ** argv) {
     }
     close(fds[1]);
 
-    struct msghdr msg;
+    struct msghdr msg = { 0 };
     struct iovec buf_iov[1];
 
     char buf[4096];
@@ -62,7 +62,6 @@ int main(int argc, char ** argv) {
           pid_len = snprintf(pid_string,sizeof(pid_string),"%d",ucred->pid);
         }
       }
-      //printf("+%d,%d:%s->%.*s\n",pid_len,recv,recv,buf);
       printf("+%d,%d:%.*s->%.*s\n",pid_len,recv,pid_len,pid_string,recv,buf);
     }
     if (recv==-1) {
